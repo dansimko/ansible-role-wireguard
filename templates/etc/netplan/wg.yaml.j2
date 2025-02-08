@@ -57,6 +57,10 @@ network:
 {%         endfor %}
 {%       endif %}
 {%     endif %}
+{%     if hostvars[host].wireguard_extra_allowed_ips is defined %}
+          allowed-ips:
+            - {{ hostvars[host].wireguard_extra_allowed_ips }}
+{%     end %}
 {%     if hostvars[host].wireguard_persistent_keepalive is defined and (hostvars[host].wireguard_endpoint is not defined or hostvars[host].wireguard_endpoint != "") %}
           keepalive: {{ hostvars[host].wireguard_persistent_keepalive }}
 {%     endif %}

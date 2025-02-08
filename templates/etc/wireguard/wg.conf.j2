@@ -75,6 +75,9 @@ AllowedIPs = {{ wg_addr.split('/')[0] }}/128
 {%      endfor %}
 {%      endif %}
 {%     endif %}
+{%     if hostvars[host].wireguard_extra_allowed_ips is defined %}
+AllowedIPs = {{ hostvars[host].wireguard_extra_allowed_ips }}
+{%     endif %}
 {%     if hostvars[host].wireguard_persistent_keepalive is defined and hostvars[host].wireguard_endpoint is defined and hostvars[host].wireguard_endpoint != "" %}
 PersistentKeepalive = {{hostvars[host].wireguard_persistent_keepalive}}
 {%     endif %}
